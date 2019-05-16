@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
+  <div class="card">
+    <h5 class="card-header"><%= @post.title %></h5>
+  <div class="card-body">
+      <%= sanitize @post.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+  </div>
+</div>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
