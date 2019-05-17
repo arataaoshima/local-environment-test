@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190516221924) do
+ActiveRecord::Schema.define(version: 20190517061459) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subcontents", force: :cascade do |t|
+    t.string   "tilte"
+    t.text     "content"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "post_id"
+    t.string   "content_type"
+    t.integer  "content_order"
   end
 
 end

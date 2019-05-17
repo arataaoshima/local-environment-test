@@ -1,0 +1,41 @@
+<%= form_for(subcontent) do |f| %>
+  <% if subcontent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subcontent.errors.count, "error") %> prohibited this subcontent from being saved:</h2>
+
+      <ul>
+      <% subcontent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tilte %>
+    <%= f.text_field :tilte, class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :content, id: :article_text %>
+    <trix-editor input="article_text"></trix-editor>
+  </div>
+
+  <div class="field">
+    <%= f.label :content_type %>
+    <%= f.text_area :content_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_id %>
+    <%= f.number_field :post_id %>
+  </div>
+  <div class="field">
+    <%= f.label :content_order %>
+    <%= f.number_field :content_order %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

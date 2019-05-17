@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @subcontent = Subcontent.new
   end
 
   # GET /posts/new
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @subcontent = Subcontent.new
   end
 
   # POST /posts

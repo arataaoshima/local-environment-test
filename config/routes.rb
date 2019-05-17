@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subcontents
   resources :posts
   root 'home#top'
 

@@ -2,5 +2,47 @@
 
 <%= render 'form', post: @post %>
 
+
+<h2>Subcontent</h2>
+<% @post.subcontents.order(:content_order).each do |subcontent| %>
+<% if subcontent.content_type == "code" %>
+  <div class="card bg-dark text-success">
+<% else %>
+  <div class="card">
+<% end %>
+    <h5 class="card-header"><%= subcontent.tilte %>
+    </h5>
+    <div class="card-body">
+     <%= sanitize subcontent.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+     <%= link_to "Edit Subcontent", edit_subcontent_path(subcontent) %>
+    </div>
+  </div>
+<% end %>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add Subcontent
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Subcontent</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'subform', subcontent: @subcontent %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>

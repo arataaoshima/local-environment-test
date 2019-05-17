@@ -1,12 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h2 class="card-header"><%= @post.title %></h2>
+<h4>  <%= sanitize @post.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+</h4>
+
+
+<% @post.subcontents.order(:content_order).each do |subcontent| %>
+<% if subcontent.content_type == "code" %>
+  <div class="card bg-dark text-success">
+<% else %>
   <div class="card">
-    <h5 class="card-header"><%= @post.title %></h5>
-  <div class="card-body">
-      <%= sanitize @post.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+<% end %>
+    <h5 class="card-header"><%= subcontent.tilte %></h5>
+    <div class="card-body">
+    <%= sanitize subcontent.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+    </div>
   </div>
-</div>
+<% end %>
+
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
