@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h2 class="card-header"><%= @post.title %></h2>
-<h4>  <%= sanitize @post.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
+<p><% @post.categories.each do |category| %>
+  <%= link_to category.title, category_path(category), class:"btn btn-outline-success" %>
+<% end %>
+</P>
+<h4>
+<%= sanitize @post.content, tags: %w(h1 h2 h3 h4 h5 h6 ul ol li p a img table tr td em br strong div), attributes:  %w(id class href) %>
 </h4>
 
 
@@ -20,5 +25,5 @@
 
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Edit', edit_post_path(@post), class:"btn btn-outline-dark" %> |
+<%= link_to 'Back', posts_path, class:"btn btn-outline-dark"  %>

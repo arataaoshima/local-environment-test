@@ -4,7 +4,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    @posts = Post.search(params[:search])
+  end
+
+  def category_edit
+    @post = Post.find(params[:id])
+    @post.category_ids = params[:category_ids]
+    @post.save
+    redirect_to "/posts/"
   end
 
   # GET /posts/1

@@ -6,7 +6,8 @@
   <thead>
     <tr>
       <th>Tilte</th>
-      <th>Content</th>
+      <th>Post ID</th>
+      <th>Post Title</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
     <% @subcontents.each do |subcontent| %>
       <tr>
         <td><%= subcontent.tilte %></td>
-        <td><%= subcontent.content %></td>
+        <td><%= subcontent.post_id %></td>
+        <td><%= subcontent.post.title %></td>
         <td><%= link_to 'Show', subcontent %></td>
         <td><%= link_to 'Edit', edit_subcontent_path(subcontent) %></td>
         <td><%= link_to 'Destroy', subcontent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
